@@ -57,6 +57,7 @@ var mihe = require('markdown-it-highlightjs-external');
 // math katex
 var katex = require('markdown-it-katex-external');
 var miip = require('markdown-it-images-preview');
+const { html5Media } = require('markdown-it-html5-media')
 var missLangs = {};
 var needLangs = [];
 var hljs_opts = {
@@ -87,6 +88,7 @@ markdown.use(mihe, hljs_opts)
     .use(katex)
     .use(taskLists)
     .use(toc)
+    .use(html5Media)
 
 export default {
     data() {

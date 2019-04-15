@@ -28,10 +28,12 @@
   "homepage": "https://github.com/hinesboy/mavonEditor#readme",
   "dependencies": {
     "highlight.js": "^9.11.0",
-    "highlight.js-async-webpack": "^1.0.4"
+    "highlight.js-async-webpack": "^1.0.4",
+    "markdown-it-html5-media": "^0.6.0"
   },
   "devDependencies": {
     "auto-textarea": "^1.4.0",
+    "autoprefixer": "^8.3.0",
     "axios": "^0.16.2",
     "babel-core": "^6.0.0",
     "babel-eslint": "^8.0.2",
@@ -106,7 +108,6 @@
     "webpack": "^2.4.1",
     "webpack-bundle-analyzer": "^2.8.1",
     "webpack-dev-server": "^2.4.4",
-    "webpack-md5-hash": "^0.0.5",
-    "autoprefixer": "^8.3.0"
+    "webpack-md5-hash": "^0.0.5"
   }
 }

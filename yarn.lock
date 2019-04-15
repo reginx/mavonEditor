@@ -3788,6 +3788,12 @@ markdown-it-highlightjs-external@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/markdown-it-highlightjs-external/-/markdown-it-highlightjs-external-1.0.1.tgz#8595fd4b0207ec429c93341f996637fa31da2d53"
 
+markdown-it-html5-media@^0.6.0:
+  version "0.6.0"
+  resolved "http://registry.npm.taobao.org/markdown-it-html5-media/download/markdown-it-html5-media-0.6.0.tgz#ed82bbdaec0545ba0879f0454c5a9d73171d3a76"
+  dependencies:
+    markdown-it "^8.4.0"
+
 markdown-it-images-preview@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/markdown-it-images-preview/-/markdown-it-images-preview-1.0.1.tgz#17d6eb8491cccd2343d4e4419a1abe9ca43c0bbb"
@@ -3820,7 +3826,7 @@ markdown-it-toc@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/markdown-it-toc/-/markdown-it-toc-1.1.0.tgz#6d189858e32b3deb4ff3ad2713fa927439c957e0"
 
-markdown-it@^8.3.1:
+markdown-it@^8.3.1, markdown-it@^8.4.0:
   version "8.4.2"
   resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-8.4.2.tgz#386f98998dc15a37722aa7722084f4020bdd9b54"
   dependencies:

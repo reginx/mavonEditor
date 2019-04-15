@@ -418,7 +418,7 @@ export default {
             var $vm = this;
             if (this.__rFilter == null) {
                 // this.__rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
-                this.__rFilter = /^image\//i;
+                this.__rFilter = /^(image|video|audio)\//i;
             }
             this.__oFReader = new FileReader();
             this.__oFReader.onload = function (oFREvent) {
@@ -440,8 +440,20 @@ export default {
             }
             if ($file) {
                 var oFile = $file;
-                if (this.__rFilter.test(oFile.type)) {
+                // 图片文件
+                if (this.__rFilter.test(oFile.type) && /^image\//.test(oFile.type)) {
                     this.__oFReader.readAsDataURL(oFile);
+                } else {
+                    $file._name = $file.name.replace(/[\[\]\(\)\+\{\}&\|\\\*^%$#@\-]/g, '');
+                    var posName = pos + '.' + $file._name.split('.').pop()
+                    $vm.insertText($vm.getTextareaDom(), {
+                        prefix: '![' + $file._name + '](' + posName + ')',
+                        subfix: '',
+                        str: ''
+                    });
+                    $vm.$nextTick(function () {
+                        $vm.$emit('imgAdd', pos, $file);
+                    })
                 }
             }
         },
@@ -462,6 +474,15 @@ export default {
         $img2Url(fileIndex, url) {
             // x.replace(/(\[[^\[]*?\](?=\())\(\s*(\.\/2)\s*\)/g, "$1(http://path/to/png.png)")
             var reg_str = "/(!\\[\[^\\[\]*?\\]\(?=\\(\)\)\\(\\s*\(" + fileIndex + "\)\\s*\\)/g"
+            var reg = eval(reg_str);
+            this.d_value = this.d_value.replace(reg, "$1(" + url + ")")
+            this.$refs.toolbar_left.$changeUrl(fileIndex, url)
+            this.iRender()
+        },
+        $video2Url(fileIndex, url) {
+            // x.replace(/(\[[^\[]*?\](?=\())\(\s*(\.\/2)\s*\)/g, "$1(http://path/to/png.png)")
+            var fileIndexName = fileIndex + '\.' + url.split('.').pop()
+            var reg_str = "/(!\\[\[^\\[\]*?\\]\(?=\\(\)\)\\(\\s*\(" + fileIndexName + "\)\\s*\\)/g"
             var reg = eval(reg_str);
             this.d_value = this.d_value.replace(reg, "$1(" + url + ")")
             this.$refs.toolbar_left.$changeUrl(fileIndex, url)
