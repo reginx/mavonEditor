@@ -406,9 +406,13 @@ export default {
         $imgDel(file) {
             this.markdownIt.image_del(file[0]);
             // 删除所有markdown中的图片
+            let ext = file[0]['_name'].split('.').pop()
             let fileReg = file[1]
+            // 删除音视频文件
+            if (ext == 'mp4' || ext == 'mp3') {
+                fileReg = fileReg + '\.' + ext
+            }
             let reg = new RegExp(`\\!\\[${file[0]._name}\\]\\(${fileReg}\\)`, "g")
-
             this.d_value = this.d_value.replace(reg, '');
             this.iRender();
             this.$emit('imgDel', file);
