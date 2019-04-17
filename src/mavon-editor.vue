@@ -409,7 +409,7 @@ export default {
             let ext = file[0]['_name'].split('.').pop()
             let fileReg = file[1]
             // 删除音视频文件
-            if (ext == 'mp4' || ext == 'mp3') {
+            if (file[1].substr(0, 4) !== 'http' && (ext == 'mp4' || ext == 'mp3')) {
                 fileReg = fileReg + '\.' + ext
             }
             let reg = new RegExp(`\\!\\[${file[0]._name}\\]\\(${fileReg}\\)`, "g")
